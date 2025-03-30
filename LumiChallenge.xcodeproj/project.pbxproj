@@ -46,6 +46,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Mocks/SurveyItem+Mocks.swift",
+				TestDoubles/SurveyApiDataSourceMock.swift,
+				TestDoubles/SurveyDetailsUseCaseMock.swift,
 			);
 			target = 877EC9232D984446001F7C7E /* LumiChallenge */;
 		};
@@ -53,6 +55,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				"Mocks/SurveyItem+Mocks.swift",
+				TestDoubles/SurveyApiDataSourceMock.swift,
+				TestDoubles/SurveyDetailsUseCaseMock.swift,
 			);
 			target = 877EC9352D984448001F7C7E /* LumiChallengeTests */;
 		};
