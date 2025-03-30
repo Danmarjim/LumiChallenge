@@ -46,9 +46,25 @@ struct SurveyItem: Codable, Identifiable {
   }
 }
 
+// MARK: - Init
+extension SurveyItem {
+  init(id: String,
+       type: ItemType,
+       title: String? = nil,
+       text: String? = nil,
+       questionType: QuestionType? = nil,
+       items: [SurveyItem]? = nil) {
+    self.id = id
+    self.type = type
+    self.title = title
+    self.text = text
+    self.questionType = questionType
+    self.items = items
+  }
+}
+
 // MARK: - Sorting
 extension SurveyItem {
-  
   var sortingPriority: Int {
     switch type {
     case .page: return 0

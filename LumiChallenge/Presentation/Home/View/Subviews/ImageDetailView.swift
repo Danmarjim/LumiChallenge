@@ -1,11 +1,5 @@
 import SwiftUI
 
-struct SurveyImageItem: Identifiable {
-  let id = UUID()
-  let title: String
-  let imageUrl: String
-}
-
 struct ImageDetailView: View {
   let item: SurveyImageItem
   

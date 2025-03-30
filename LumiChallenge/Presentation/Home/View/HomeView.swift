@@ -43,6 +43,15 @@ struct HomeView: View {
       }
     }
   }
+  
+  // MARK: -  Custom init for snapshot testing
+  init(viewModel: HomeViewModel) {
+    _viewModel = StateObject(wrappedValue: viewModel)
+  }
+  
+  init() {
+    _viewModel = StateObject(wrappedValue: HomeViewModel())
+  }
 }
 
 #Preview {
