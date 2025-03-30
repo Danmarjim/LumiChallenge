@@ -15,7 +15,19 @@ struct SurveyItem: Codable, Identifiable {
   let title: String?
   let text: String?
   let questionType: QuestionType?
-  let items: [SurveyItem]?
+  var items: [SurveyItem]?
+  
+  var nestingLevel: Int {
+    guard let items = items else { return 0 }
+    return items.compactMap { $0.nestingLevel }.max().map { $0 + 1 } ?? 0
+  }
+  
+  var displayText: String {
+    switch type {
+    case .page, .section: return title ?? "No title"
+    case .question: return text ?? "Question without text"
+    }
+  }
   
   private enum CodingKeys: String, CodingKey {
     case type, id, title, text
@@ -34,12 +46,24 @@ struct SurveyItem: Codable, Identifiable {
   }
 }
 
+// MARK: - Sorting
 extension SurveyItem {
-  var isQuestion: Bool {
-    return type == .question
+  
+  var sortingPriority: Int {
+    switch type {
+    case .page: return 0
+    case .section: return 1
+    case .question: return 2
+    }
   }
   
-  var displayText: String? {
-    return isQuestion ? text : title
+  static func sortSurveyItems(_ items: [SurveyItem]) -> [SurveyItem] {
+    return items.sorted { $0.sortingPriority < $1.sortingPriority }.map { item in
+      var sortedItem = item
+      if let nestedItems = item.items {
+        sortedItem.items = sortSurveyItems(nestedItems)
+      }
+      return sortedItem
+    }
   }
 }
