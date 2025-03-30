@@ -9,7 +9,7 @@ class SurveyRepositorySpec: XCTestCase {
   override func setUp() async throws {
     try await super.setUp()
     mockDataSource = SurveyApiDataSourceMock()
-    repository = SurveyRepository(apiDataSource: mockDataSource)
+    repository = SurveyRepository(remoteDataSource: mockDataSource)
   }
   
   override func tearDown() async throws {
@@ -18,13 +18,13 @@ class SurveyRepositorySpec: XCTestCase {
     try await super.tearDown()
   }
   
-  func testFetchSurveyDetails_Success() async throws {
+  func test_fetch_survey_details_success() async throws {
     givenSuccessDataSource()
     try await whenSuccessFetchSurvey()
     thenSuccessFetchSurvey()
   }
   
-  func testFetchSurveyDetails_Error() async throws {
+  func test_fetch_survey_details_error() async throws {
     givenFailureDataSource()
     do {
       try await whenFailureFetchSurvey()
@@ -44,12 +44,12 @@ extension SurveyRepositorySpec {
       SurveyItem(id: UUID().uuidString, type: .page)
     ]
     
-    repository = SurveyRepository(apiDataSource: mockDataSource)
+    repository = SurveyRepository(remoteDataSource: mockDataSource)
   }
   
   private func givenFailureDataSource() {
     mockDataSource.shouldThrowError = true
-    repository = SurveyRepository(apiDataSource: mockDataSource)
+    repository = SurveyRepository(remoteDataSource: mockDataSource)
   }
 }
 

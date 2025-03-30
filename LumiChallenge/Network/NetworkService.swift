@@ -9,6 +9,6 @@ extension NetworkService {
   }
   
   var surveyRepository: SurveyRepository {
-    return SurveyRepository(apiDataSource: SurveyApiDataSource())
+    return SurveyRepository(remoteDataSource: SurveyApiDataSource())
   }
 }
