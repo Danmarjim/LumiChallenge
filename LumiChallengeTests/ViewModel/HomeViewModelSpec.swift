@@ -41,8 +41,8 @@ extension HomeViewModelSpec {
   
   private func givenSurveyDetails() {
     let mockItems = [
-      SurveyItem(id: UUID().uuidString, type: .page),
-      SurveyItem(id: UUID().uuidString, type: .page)
+      SurveyItem(type: .page),
+      SurveyItem(type: .page)
     ]
     mockUseCase.result = .success(mockItems)
   }

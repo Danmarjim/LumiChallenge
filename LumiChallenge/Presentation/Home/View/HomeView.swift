@@ -17,10 +17,10 @@ struct HomeView: View {
           List(viewModel.items, children: \.items) { item in
             SurveyItemView(item: item)
               .onTapGesture {
-                if case .image = item.questionType {
+                if case .image = item.type {
                   selectedImage = SurveyImageItem(
                     title: item.title ?? "",
-                    imageUrl: item.text ?? ""
+                    imageUrl: item.src ?? ""
                   )
                 }
               }

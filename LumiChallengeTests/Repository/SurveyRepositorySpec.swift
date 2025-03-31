@@ -39,9 +39,9 @@ extension SurveyRepositorySpec {
   
   private func givenSuccessDataSource() {
     mockDataSource.surveyItems = [
-      SurveyItem(id: UUID().uuidString, type: .page),
-      SurveyItem(id: UUID().uuidString, type: .page),
-      SurveyItem(id: UUID().uuidString, type: .page)
+      SurveyItem(type: .page),
+      SurveyItem(type: .page),
+      SurveyItem(type: .page)
     ]
     
     repository = SurveyRepository(remoteDataSource: mockDataSource)

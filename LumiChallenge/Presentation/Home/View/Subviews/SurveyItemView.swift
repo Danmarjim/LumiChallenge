@@ -5,26 +5,43 @@ struct SurveyItemView: View {
   
   private var fontSize: CGFloat {
     switch item.type {
-    case .page: return 20
-    case .section: return 17 - CGFloat(item.nestingLevel * 2)
-    case .question: return 15
+    case .page:
+      return 26
+      
+    case .section:
+      return 17
+      
+    case .text, .image:
+      return 15
     }
   }
   
   private var fontWeight: Font.Weight {
     switch item.type {
-    case .page: return .bold
-    case .section: return .semibold
-    case .question: return .regular
+    case .page:
+      return .bold
+      
+    case .section:
+      return .regular
+      
+    case .text, .image:
+      return .thin
     }
   }
   
   private var iconName: String {
     switch item.type {
-    case .page: return "doc.text"
-    case .section: return "folder"
-    case .question:
-      return item.questionType == .image ? "photo" : "questionmark.circle"
+    case .page: 
+      return "doc.text"
+      
+    case .section:
+      return "folder"
+      
+    case .text:
+      return "questionmark.circle"
+      
+    case .image:
+      return "photo"
     }
   }
   
@@ -34,7 +51,7 @@ struct SurveyItemView: View {
         .foregroundColor(.primary)
         .frame(width: 24)
       
-      if item.questionType == .image, let imageUrl = item.text {
+      if item.type == .image, let imageUrl = item.src {
         AsyncImage(url: URL(string: imageUrl)) { image in
           image
             .resizable()

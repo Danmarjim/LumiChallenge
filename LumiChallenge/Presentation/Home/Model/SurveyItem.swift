@@ -1,20 +1,18 @@
+import Foundation
+
 enum ItemType: String, Codable {
   case page
   case section
-  case question
-}
-
-enum QuestionType: String, Codable {
   case text
   case image
 }
 
 struct SurveyItem: Codable, Identifiable {
-  let id: String
+  let id: String = UUID().uuidString
   let type: ItemType
   let title: String?
   let text: String?
-  let questionType: QuestionType?
+  let src: String?
   var items: [SurveyItem]?
   
   var nestingLevel: Int {
@@ -24,41 +22,43 @@ struct SurveyItem: Codable, Identifiable {
   
   var displayText: String {
     switch type {
-    case .page, .section: return title ?? "No title"
-    case .question: return text ?? "Question without text"
+    case .page, .section: 
+      return title ?? "No title"
+      
+    case .text: 
+      return title ?? "Text content"
+      
+    case .image: 
+      return title ?? "Image"
     }
   }
   
   private enum CodingKeys: String, CodingKey {
-    case type, id, title, text
-    case questionType = "questionType"
-    case items
+    case type, id, title, text, src, items
   }
   
   init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     type = try container.decode(ItemType.self, forKey: .type)
-    id = try container.decode(String.self, forKey: .id)
+//    id = try container.decode(String.self, forKey: .id)
     title = try container.decodeIfPresent(String.self, forKey: .title)
     text = try container.decodeIfPresent(String.self, forKey: .text)
-    questionType = try container.decodeIfPresent(QuestionType.self, forKey: .questionType)
+    src = try container.decodeIfPresent(String.self, forKey: .src)
     items = try container.decodeIfPresent([SurveyItem].self, forKey: .items)
   }
 }
 
 // MARK: - Init
 extension SurveyItem {
-  init(id: String,
-       type: ItemType,
+  init(type: ItemType,
        title: String? = nil,
        text: String? = nil,
-       questionType: QuestionType? = nil,
+       src: String? = nil,
        items: [SurveyItem]? = nil) {
-    self.id = id
     self.type = type
     self.title = title
     self.text = text
-    self.questionType = questionType
+    self.src = src
     self.items = items
   }
 }
@@ -67,9 +67,17 @@ extension SurveyItem {
 extension SurveyItem {
   var sortingPriority: Int {
     switch type {
-    case .page: return 0
-    case .section: return 1
-    case .question: return 2
+    case .page:
+      return 0
+      
+    case .section:
+      return 1
+      
+    case .text:
+      return 2
+      
+    case .image:
+      return 2
     }
   }
   

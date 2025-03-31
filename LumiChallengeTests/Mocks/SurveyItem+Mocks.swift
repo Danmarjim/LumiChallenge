@@ -5,14 +5,13 @@ extension SurveyItem {
                    type: ItemType,
                    title: String? = nil,
                    text: String? = nil,
-                   questionType: QuestionType? = nil,
+                   src: String? = nil,
                    items: [SurveyItem]? = nil) -> SurveyItem {
     SurveyItem(
-      id: id,
       type: type,
       title: title,
       text: text,
-      questionType: questionType,
+      src: src,
       items: items
     )
   }
@@ -32,29 +31,28 @@ extension SurveyItem {
               mockImageQuestion
             ]
           ),
-          mockSection
-        ]
-      ),
-      mock(
-        id: "page_2",
-        type: .page,
-        title: "Second Page",
-        items: [
           mock(
-            type: .section,
-            title: "Section B",
+            id: "page_2",
+            type: .page,
+            title: "Second Page",
             items: [
               mock(
-                type: .question,
-                text: "Describe your experience",
-                questionType: .text
+                type: .section,
+                title: "Section B",
+                items: [
+                  mock(
+                    type: .text,
+                    text: "Describe your experience"
+                  )
+                ]
               )
             ]
-          )
+          ),
+          mockSection,
+          mockTextQuestion,
+          mockSection
         ]
-      ),
-      .mockSection,
-      .mockTextQuestion
+      )
     ]
   }
   
@@ -79,18 +77,16 @@ extension SurveyItem {
   static var mockTextQuestion: SurveyItem {
     mock(
       id: "question_1",
-      type: .question,
-      text: "¿What's your name?",
-      questionType: .text
+      type: .text,
+      text: "¿What's your name?"
     )
   }
   
   static var mockImageQuestion: SurveyItem {
     mock(
       id: "question_2",
-      type: .question,
-      text: "https://images.dog.ceo/breeds/maltese/n02085936_797.jpg",
-      questionType: .image
+      type: .image,
+      text: "https://images.dog.ceo/breeds/maltese/n02085936_797.jpg"
     )
   }
 }

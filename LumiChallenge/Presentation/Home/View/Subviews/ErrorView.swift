@@ -9,7 +9,7 @@ struct ErrorView: View {
         .font(.system(size: 48))
         .foregroundColor(.red)
       
-      Text("Error al cargar la encuesta")
+      Text("Error Load Survey")
         .font(.headline)
 
       Text(error.localizedDescription)

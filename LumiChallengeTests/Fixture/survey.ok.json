@@ -1,79 +1,64 @@
 {
+  "type": "page",
+  "title": "Main Page",
   "items": [
     {
       "type": "section",
-      "id": "root-section1",
-      "title": "Configuración Global",
+      "title": "Introduction",
       "items": [
         {
-          "type": "question",
-          "id": "root-q1",
-          "questionType": "text",
-          "text": "Idioma preferido"
+          "type": "text",
+          "title": "Welcome to the main page!"
         },
         {
-          "type": "question",
-          "id": "root-q2",
-          "questionType": "text",
-          "text": "Tema de color"
+          "type": "image",
+          "src": "https://robohash.org/280?&set=set4&size=400x400",
+          "title": "Welcome Image"
         }
       ]
     },
     {
-      "type": "question",
-      "id": "root-q3",
-      "questionType": "image",
-      "text": "https://images.dog.ceo/breeds/maltese/n02085936_797.jpg"
-    },
-    {
-      "type": "page",
-      "id": "page1",
-      "title": "Página Principal",
+      "type": "section",
+      "title": "Chapter 1",
       "items": [
         {
+          "type": "text",
+          "title": "This is the first chapter."
+        },
+        {
           "type": "section",
-          "id": "section1",
-          "title": "Información Personal",
+          "title": "Subsection 1.1",
           "items": [
             {
-              "type": "question",
-              "id": "q1",
-              "questionType": "text",
-              "text": "¿Cuál es tu nombre completo?"
+              "type": "text",
+              "title": "This is a subsection under Chapter 1."
             },
             {
-              "type": "question",
-              "id": "q2",
-              "questionType": "text",
-              "text": "¿Cuál es tu fecha de nacimiento?"
+              "type": "image",
+              "src": "https://robohash.org/100?&set=set4&size=400x400",
+              "title": "Chapter 1 Image"
             }
           ]
         }
       ]
     },
     {
-      "type": "section",
-      "id": "root-section2",
-      "title": "Preferencias Avanzadas",
-      "items": [
-        {
-          "type": "question",
-          "id": "root-q4",
-          "questionType": "text",
-          "text": "Nivel de privacidad"
-        }
-      ]
-    },
-    {
       "type": "page",
-      "id": "page2",
-      "title": "Página Secundaria",
+      "title": "Second Page",
       "items": [
         {
-          "type": "question",
-          "id": "q5",
-          "questionType": "text",
-          "text": "Describe tu experiencia previa"
+          "type": "section",
+          "title": "Chapter 2",
+          "items": [
+            {
+              "type": "text",
+              "title": "This is the second chapter."
+            },
+            {
+              "type": "text",
+              "title": "What is the main topic of Chapter 2?"
+            }
+          ]
         }
       ]
     }
