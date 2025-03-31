@@ -12,13 +12,16 @@ struct ImageDetailView: View {
             image
               .resizable()
               .scaledToFit()
+            
           case .failure:
             Image(systemName: "photo")
               .resizable()
               .scaledToFit()
               .foregroundColor(.gray)
+            
           case .empty:
             ProgressView()
+            
           @unknown default:
             EmptyView()
           }

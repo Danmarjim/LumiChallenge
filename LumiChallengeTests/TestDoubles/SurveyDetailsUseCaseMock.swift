@@ -5,6 +5,7 @@ class SurveyDetailsUseCaseMock: SurveyDetailsUseCase {
     switch result {
     case .success(let items):
       return items
+      
     case .failure(let error):
       throw error
     }

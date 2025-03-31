@@ -13,6 +13,7 @@ enum StorageError: Error {
     switch self {
     case .encodingFailed(let error):
       return "Store error: \(error.localizedDescription)"
+      
     case .decodingFailed(let error):
       return "Load error: \(error.localizedDescription)"
     }
